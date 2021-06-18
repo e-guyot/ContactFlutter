@@ -4,8 +4,9 @@ class Contact {
 
   Contact(this.name);
 
-  static List<Contact> addContact() {
-    return [];
+  static Contact addContact() {
+    return null;
   }
+
 
 }
