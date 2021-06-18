@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-class AddContactPage extends StatelessWidget {
-
-  @override 
-  Widget build(BuildContext context) {
-    return Scaffold(
+void main() => runApp(MyApp());
+class MyApp extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+		return Scaffold(
       body: SafeArea(
         child: Form(
           child: Column(
@@ -20,10 +19,6 @@ class AddContactPage extends StatelessWidget {
           )
         )
       ),
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons, save),
-        ), */
     );
-  }
+	  }
 }
