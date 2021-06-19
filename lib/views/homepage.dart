@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../models/contact.dart' as Contact;
 import 'form.dart' as MyCustomForm;
 
 class MyHomePage extends StatelessWidget {
+  String value;
+
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -10,6 +13,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String value;
     return Scaffold(
       appBar: AppBar(
         title: const Text('All Contacts'),
@@ -50,6 +54,7 @@ class MyHomePage extends StatelessWidget {
                         if (value == null || value.isEmpty) {
                           return 'Please enter some text';
                         }
+                        this.value = value;
                         return null;
                       },
                     ),
@@ -59,6 +64,8 @@ class MyHomePage extends StatelessWidget {
                         icon: const Icon(Icons.search),
                         tooltip: 'Search',
                         onPressed: () {
+                          print(rootBundle.loadString('json/contact.json'));
+                          print(value);
                           // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState.validate()) {
                             // If the form is valid, display a snackbar. In the real world,
@@ -73,7 +80,6 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ),
       ),

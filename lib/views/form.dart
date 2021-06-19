@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/contact.dart' as Contact;
 
 class MyForm extends StatelessWidget {
   @override
@@ -16,7 +17,6 @@ class MyForm extends StatelessWidget {
     );
   }
 }
-
 
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
@@ -37,6 +37,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  String name = '';
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
     return Form(
@@ -47,10 +48,11 @@ class MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
+              validator: (name) {
+                if (name == null || name.isEmpty) {
                   return 'Please enter some text';
                 }
+                this.name = name;
                 return null;
               },
               decoration: InputDecoration(
@@ -65,6 +67,7 @@ class MyCustomFormState extends State<MyCustomForm> {
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState.validate()) {
+                  Contact.Contact.addContact(name);
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context)
@@ -79,7 +82,3 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
-
-
-
-
